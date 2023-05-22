@@ -27,8 +27,8 @@ class MobileAppBar extends StatelessWidget {
               onPressed: () {},
               icon: Image.asset(
                 "assets/images/cart.png",
-                height: 20,
-                width: 20,
+                height: 40,
+                width: 40,
               )),
         ],
       ),

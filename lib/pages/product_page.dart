@@ -1,3 +1,5 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'package:responsive_product_web_page/colors.dart';
 import 'package:responsive_product_web_page/pages/widgets/app_drawer.dart';
@@ -27,78 +29,120 @@ class _ProductPageState extends State<ProductPage> {
     final screenType = context.screenType();
     return Scaffold(
       drawer: screenType == ScreenType.mobile ? const Drawer() : null,
-      body: Scrollbar(
-        controller: verticalController,
-        thumbVisibility: true,
-        child: SingleChildScrollView(
+      body: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 1,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/images/backk.png'),
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.1),
+                      BlendMode.modulate,
+                    ))),
+          ),
+          Scrollbar(
             controller: verticalController,
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                Visibility(
-                    visible: screenType == ScreenType.desktop,
-                    replacement: MobileAppBar(
-                        onPressed: _isDrawerOpened ? _closeDrawer : _openDrawer,
-                        isDrawerOpened: _isDrawerOpened),
-                    child: const DesktopAppBar()),
-                Visibility(
-                    visible: _isDrawerOpened && screenType == ScreenType.mobile,
-                    child: const AppDrawer()),
-                const SizedBox(
-                  height: 50,
-                ),
-                Flex(
-                  direction: screenType == ScreenType.desktop
-                      ? Axis.horizontal
-                      : Axis.vertical,
+            thumbVisibility: true,
+            child: SingleChildScrollView(
+                controller: verticalController,
+                scrollDirection: Axis.vertical,
+                child: Column(
                   children: [
                     Visibility(
-                      visible: screenType == ScreenType.desktop,
-                      child: const Spacer(),
+                        visible: screenType == ScreenType.desktop,
+                        replacement: MobileAppBar(
+                            onPressed:
+                                _isDrawerOpened ? _closeDrawer : _openDrawer,
+                            isDrawerOpened: _isDrawerOpened),
+                        child: const DesktopAppBar()),
+                    Visibility(
+                        visible:
+                            _isDrawerOpened && screenType == ScreenType.mobile,
+                        child: const AppDrawer()),
+                    const SizedBox(
+                      height: 40,
                     ),
-                    Expanded(
-                      flex: screenType == ScreenType.desktop ? 8 : 0,
-                      child: ImageSlider(
-                        images: const [
-                          "https://raw.githubusercontent.com/mostafaemara/responsive_product_web_page/master/resources/xbox_controller_1.jpg",
-                          "https://raw.githubusercontent.com/mostafaemara/responsive_product_web_page/master/resources/xbox_controller_2.jpg",
-                          "https://raw.githubusercontent.com/mostafaemara/responsive_product_web_page/master/resources/xbox_controller_3.jpg",
-                          "https://raw.githubusercontent.com/mostafaemara/responsive_product_web_page/master/resources/xbox_controller_4.jpg"
-                        ],
-                        screenType: screenType,
+                    Flex(
+                      direction: screenType == ScreenType.desktop
+                          ? Axis.horizontal
+                          : Axis.vertical,
+                      children: [
+                        Visibility(
+                          visible: screenType == ScreenType.desktop,
+                          child: const Spacer(),
+                        ),
+                        Expanded(
+                          flex: screenType == ScreenType.desktop ? 8 : 0,
+                          child: ImageSlider(
+                            images: const [
+                              "assets/images/chaqueta.jpg",
+                              "assets/images/goros.jpg",
+                              "assets/images/gororio.jpg",
+                              "assets/images/etiqueta.jpg",
+                            ],
+                            screenType: screenType,
+                          ),
+                        ),
+                        Visibility(
+                          visible: screenType == ScreenType.desktop,
+                          child: const Spacer(),
+                        ),
+                        const ProductOptions(),
+                        Visibility(
+                          visible: screenType == ScreenType.desktop,
+                          child: const Spacer(),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 73,
+                    ),
+                    Center(
+                      child: Text(
+                        "Complete Your Experience".toUpperCase(),
+                        style: TextStyle(
+                            color: AppColors.black,
+                            fontFamily: "Atmosphere",
+                            fontSize: 30,
+                            wordSpacing:
+                                screenType == ScreenType.desktop ? 10 : 2,
+                            letterSpacing:
+                                screenType == ScreenType.desktop ? 10 : 4,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
-                    Visibility(
-                      visible: screenType == ScreenType.desktop,
-                      child: const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 3,
+                          backgroundColor: Colors.black,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.60,
+                          child: Divider(
+                            color: Colors.black54,
+                          ),
+                        ),
+                        CircleAvatar(
+                          radius: 3,
+                          backgroundColor: Colors.black,
+                        ),
+                      ],
                     ),
-                    const ProductOptions(),
-                    Visibility(
-                      visible: screenType == ScreenType.desktop,
-                      child: const Spacer(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const SimilarProducts(),
+                    const SizedBox(
+                      height: 10,
                     ),
                   ],
-                ),
-                const SizedBox(
-                  height: 73,
-                ),
-                Text(
-                  "Complete Your Experience".toUpperCase(),
-                  style: const TextStyle(
-                      color: AppColors.black,
-                      fontFamily: "Barlow",
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const SimilarProducts(),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            )),
+                )),
+          ),
+        ],
       ),
     );
   }

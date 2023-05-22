@@ -84,6 +84,9 @@ flutter:
     - family: BarlowCondensed
       fonts:
          - asset: assets/fonts/BarlowCondensed-Medium.ttf
+    - family: Atmosphere
+      fonts:
+         - asset: assets/fonts/FontsFree-Net-Atmosphere-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

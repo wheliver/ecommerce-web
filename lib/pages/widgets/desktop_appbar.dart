@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_product_web_page/colors.dart';
-import 'package:responsive_product_web_page/pages/widgets/search_bar.dart';
 
 import 'app_logo.dart';
 
@@ -85,7 +84,7 @@ class DesktopAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(
-            flex: 6,
+            flex: 5,
           ),
           const SizedBox(height: 30, width: 200, child: SearchBar()),
           TextButton(onPressed: () {}, child: const Text("SIGN IN")),
@@ -93,8 +92,8 @@ class DesktopAppBar extends StatelessWidget {
               onPressed: () {},
               icon: Image.asset(
                 "assets/images/cart.png",
-                height: 20,
-                width: 20,
+                height: 40,
+                width: 40,
               )),
         ],
       ),

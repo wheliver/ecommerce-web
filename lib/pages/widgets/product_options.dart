@@ -35,14 +35,14 @@ class _ProductOptionsState extends State<ProductOptions> {
           height: 4,
         ),
         Text(
-          "Xbox One Wireless Controller".toUpperCase(),
+          "Men Ontop Graphic Hoodie".toUpperCase(),
           style: const TextStyle(fontSize: 30, fontFamily: "Barlow"),
         ),
         const SizedBox(
           height: 4,
         ),
         const Text(
-          "Accessories",
+          "Clothing",
           style: TextStyle(
               fontSize: 16, fontFamily: "Roboto", color: AppColors.black),
         ),

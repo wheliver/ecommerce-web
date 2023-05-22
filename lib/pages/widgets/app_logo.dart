@@ -7,8 +7,8 @@ class AppLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       "assets/images/logo.png",
-      height: 33,
-      width: 158,
+      height: 100,
+      width: 200,
     );
   }
 }

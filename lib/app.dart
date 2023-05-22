@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               onBackground: AppColors.black,
               surface: AppColors.white,
               onSurface: AppColors.black)),
-      home: const CollectionsPage(),
+      home: const ProductPage(),
     );
   }
 }
