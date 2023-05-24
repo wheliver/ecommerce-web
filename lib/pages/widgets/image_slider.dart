@@ -39,8 +39,11 @@ class _ImageSliderState extends State<ImageSlider> {
                       SizedBox(
                         width: imageWidth < 723 ? imageWidth : 723,
                         height: 453,
-                        child: Image.network(
-                          widget.images[_selectedIndex],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image.network(
+                            widget.images[_selectedIndex],
+                          ),
                         ),
                       ),
                     ],
@@ -61,8 +64,11 @@ class _ImageSliderState extends State<ImageSlider> {
                       SizedBox(
                         width: imageWidth < 723 ? imageWidth : 723,
                         height: 453,
-                        child: Image.network(
-                          widget.images[_selectedIndex],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image.network(
+                            widget.images[_selectedIndex],
+                          ),
                         ),
                       ),
                     ].reversed.toList(),
@@ -97,8 +103,11 @@ class _GalleryImageItem extends StatelessWidget {
                   : null),
           width: 75,
           height: 75,
-          child: Image.network(
-            image,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.network(
+              image,
+            ),
           ),
         ),
       ),
