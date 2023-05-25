@@ -26,31 +26,51 @@ class DesktopAppBar extends StatelessWidget {
                 onPressed: () {},
                 child: const Text(
                   "CLOTHING",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "BarlowCondensed",
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 )),
             TextButton(
                 onPressed: () {},
                 child: const Text(
                   "ACCESSORIES",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "BarlowCondensed",
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 )),
             TextButton(
                 onPressed: () {},
                 child: const Text(
                   "CARE AND MAINTENANCE",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "BarlowCondensed",
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 )),
             TextButton(
                 onPressed: () {},
                 child: const Text(
                   "FOOTWEAR",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "BarlowCondensed",
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 )),
             TextButton(
                 onPressed: () {},
                 child: const Text(
                   "STYLE AND FASHION TIPS",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "BarlowCondensed",
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 )),
           ].sublist(0, numberOfVisibleViews),
           Visibility(
@@ -117,7 +137,15 @@ class DesktopAppBar extends StatelessWidget {
                 height: 40,
                 width: 40,
               )),
-          TextButton(onPressed: () {}, child: const Text("SIGN IN")),
+          TextButton(
+              onPressed: () {},
+              child: const Text(
+                "SIGN IN",
+                style: TextStyle(
+                  fontFamily: "BarlowCondensed",
+                  color: Colors.black,
+                ),
+              )),
           IconButton(onPressed: () {}, icon: Icon(Icons.person)),
         ],
       ),

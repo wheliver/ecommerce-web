@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_product_web_page/constant/dummy.dart';
+import 'package:responsive_product_web_page/pages/widgets/desktop_appbar.dart';
+import 'package:responsive_product_web_page/pages/widgets/mobile_appbar.dart';
+import 'package:responsive_product_web_page/ui_helper.dart';
 import 'package:responsive_product_web_page/view/component/category_row.dart';
 import 'package:responsive_product_web_page/pages/widgets/header_widget.dart';
 import 'package:responsive_product_web_page/view/component/related_keyword.dart';
@@ -16,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      color: Colors.transparent,
       debugShowCheckedModeBanner: false,
       home: Dashboard(),
     );
@@ -34,69 +38,111 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   int selectedSideBarCategory = -1;
   String selectedSubcategory = '';
   bool isExtraFeatures = false;
+  bool _isDrawerOpened = false;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
+    final screenType = context.screenType();
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SizedBox(
-          height: size.height,
-          width: size.width,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HeaderWidget(size: size),
-                categoryWidget(size, categoryList),
-                const SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        filterSidebarWidget(sideBarCategoryList),
-                        Expanded(
-                          flex: 6,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(12),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 10,
-                                  spreadRadius: 1,
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                RelatedKeyword(relatedKeyword: relatedKeyword),
-                                productCard(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 1,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/backk.png'),
+                      colorFilter: ColorFilter.mode(
+                        Colors.white.withOpacity(0.1),
+                        BlendMode.modulate,
+                      ))),
             ),
-          ),
+            SizedBox(
+              height: size.height,
+              width: size.width,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // HeaderWidget(size: size),
+                    Visibility(
+                        visible: screenType == ScreenType.desktop,
+                        replacement: MobileAppBar(
+                            onPressed:
+                                _isDrawerOpened ? _closeDrawer : _openDrawer,
+                            isDrawerOpened: _isDrawerOpened),
+                        child: const DesktopAppBar()),
+                    categoryWidget(size, categoryList),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            /*Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(12),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.2),
+                                      blurRadius: 10,
+                                      spreadRadius: 1,
+                                    ),
+                                  ],
+                                ),
+                                child: 
+                              ),*/
+                            filterSidebarWidget(sideBarCategoryList),
+                            Expanded(
+                              flex: 6,
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(12),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.2),
+                                      blurRadius: 10,
+                                      spreadRadius: 1,
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    RelatedKeyword(
+                                        relatedKeyword: relatedKeyword),
+                                    productCard(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -461,5 +507,17 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+  void _openDrawer() {
+    setState(() {
+      _isDrawerOpened = true;
+    });
+  }
+
+  void _closeDrawer() {
+    setState(() {
+      _isDrawerOpened = false;
+    });
   }
 }

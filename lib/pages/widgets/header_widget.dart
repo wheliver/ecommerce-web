@@ -25,8 +25,8 @@ class HeaderWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 5),
                   child: Image(
-                    image: AssetImage('assets/logo.png'),
-                    height: 30,
+                    image: AssetImage('assets/images/logo.png'),
+                    height: 90,
                   ),
                 ),
                 SizedBox(
