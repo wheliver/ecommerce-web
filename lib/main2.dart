@@ -307,8 +307,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     selectedIndex: selectedSideBarCategory,
                     selectedSubcategory: selectedSubcategory,
                     subCategoryOntap: (String value) {
-                      WidgetsBinding.instance
-                          ?.addPostFrameCallback((timeStamp) {
+                      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                         selectedSubcategory = value;
                         setState(() {});
                       });
