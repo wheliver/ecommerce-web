@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../colors.dart';
+import '../../constant/colors.dart';
 
 class Rating extends StatelessWidget {
   const Rating({

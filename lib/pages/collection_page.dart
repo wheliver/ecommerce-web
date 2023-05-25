@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_product_web_page/colors.dart';
+import 'package:responsive_product_web_page/constant/colors.dart';
 import 'package:responsive_product_web_page/pages/widgets/app_drawer.dart';
 import 'package:responsive_product_web_page/ui_helper.dart';
 
