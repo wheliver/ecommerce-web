@@ -19,7 +19,7 @@ class DesktopAppBar extends StatelessWidget {
         children: [
           const AppLogo(),
           const Spacer(
-            flex: 3,
+            flex: 1,
           ),
           ...[
             TextButton(
@@ -107,7 +107,7 @@ class DesktopAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(
-            flex: 5,
+            flex: 3,
           ),
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           IconButton(

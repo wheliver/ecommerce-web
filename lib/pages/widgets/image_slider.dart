@@ -40,7 +40,7 @@ class _ImageSliderState extends State<ImageSlider> {
                                     ))),
                       ),
                       SizedBox(
-                        width: imageWidth < 723 ? imageWidth - 32 : 720,
+                        width: imageWidth < 723 ? imageWidth - 18 : 720,
                         height: 520,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(7),

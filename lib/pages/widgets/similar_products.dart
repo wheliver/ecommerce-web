@@ -18,7 +18,9 @@ class SimilarProducts extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset("assets/images/goros.jpg"),
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(7),
+                            child: Image.asset("assets/images/goros.jpg")),
                         const SizedBox(
                           height: 14,
                         ),
@@ -36,6 +38,9 @@ class SimilarProducts extends StatelessWidget {
                           width: 206,
                           height: 40,
                           child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) => Colors.red)),
                             child: const Text(
                               "\$19.99",
                               style: TextStyle(

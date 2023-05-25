@@ -71,7 +71,9 @@ class _ProductPageState extends State<ProductPage> {
                       children: [
                         Visibility(
                           visible: screenType == ScreenType.desktop,
-                          child: const Spacer(),
+                          child: const Spacer(
+                            flex: 2,
+                          ),
                         ),
                         Expanded(
                           flex: screenType == ScreenType.desktop ? 8 : 0,
@@ -88,13 +90,15 @@ class _ProductPageState extends State<ProductPage> {
                         Visibility(
                           visible: screenType == ScreenType.desktop,
                           child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.08,
+                            width: MediaQuery.of(context).size.width * 0.04,
                           ),
                         ),
                         const ProductOptions(),
                         Visibility(
                           visible: screenType == ScreenType.desktop,
-                          child: const Spacer(),
+                          child: const Spacer(
+                            flex: 2,
+                          ),
                         ),
                       ],
                     ),
