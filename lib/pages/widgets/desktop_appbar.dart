@@ -23,7 +23,7 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
     TextEditingController searchController = TextEditingController();
     final numberOfVisibleViews = (remainingWidth ~/ 120).clamp(0, viewsCounts);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 9),
+      padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 9),
       child: Row(
         children: [
           const AppLogo(),

@@ -65,7 +65,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
               width: size.width,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 0),
+                    const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,12 +80,12 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         child: const DesktopAppBar()),
                     categoryWidget(size, categoryList),
                     const SizedBox(
-                      height: 20,
+                      height: 3,
                     ),
                     Expanded(
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.002),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,9 +107,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 ),
                                 child: 
                               ),*/
-                            filterSidebarWidget(sideBarCategoryList),
+                            //filterSidebarWidget(sideBarCategoryList),
                             Expanded(
-                              flex: 6,
+                              flex: 5,
                               child: Container(
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -126,10 +126,14 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   ],
                                 ),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     RelatedKeyword(
                                         relatedKeyword: relatedKeyword),
-                                    productCard(),
+                                    productCard(
+                                        (MediaQuery.of(context).size.width /
+                                                315)
+                                            .toInt()),
                                   ],
                                 ),
                               ),
@@ -148,145 +152,144 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     );
   }
 
-  Expanded productCard() {
+  Expanded productCard(int div) {
     return Expanded(
-      child: Container(
-        child: GridView.builder(
-          primary: false,
-          shrinkWrap: false,
-          itemCount: productList.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3),
-          itemBuilder: (context, index) {
-            return Container(
-              height: 110,
-              width: 50,
-              margin: const EdgeInsets.all(12),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(12),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                  ),
-                ],
+      child: GridView.builder(
+        primary: false,
+        shrinkWrap: true,
+        itemCount: productList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: div, mainAxisExtent: 315),
+        itemBuilder: (context, index) {
+          return Container(
+            height: 110,
+            width: 50,
+            margin: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(12),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(
+                      image: AssetImage(productList[index]['image']),
+                      height: 170,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
+                Text(
+                  productList[index]['title'],
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  productList[index]['price'],
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                  ),
+                ),
+                Container(
+                  height: 35,
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image(
-                        image: AssetImage(productList[index]['image']),
-                        height: 170,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          RatingBar.builder(
+                            initialRating: productList[index]['rating'],
+                            minRating: 1,
+                            itemSize: 15,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding:
+                                const EdgeInsets.symmetric(horizontal: 3.0),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          const Text('4.5'),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            productList[index]['favorite'] =
+                                !productList[index]['favorite'];
+                          });
+                        },
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            const RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Color(0xFF9DC2FF),
+                              ),
+                            ),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(productList[index]['favorite']
+                                ? Icons.favorite
+                                : Icons.favorite_border_outlined),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Text(
+                              'Like',
+                              style: TextStyle(
+                                color: Color(0xFF2264D1),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                  Text(
-                    productList[index]['title'],
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    productList[index]['price'],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Container(
-                    height: 35,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            RatingBar.builder(
-                              initialRating: productList[index]['rating'],
-                              minRating: 1,
-                              itemSize: 15,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemPadding:
-                                  const EdgeInsets.symmetric(horizontal: 3.0),
-                              itemBuilder: (context, _) => const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              onRatingUpdate: (rating) {
-                                print(rating);
-                              },
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            const Text('4.5'),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            setState(() {
-                              productList[index]['favorite'] =
-                                  !productList[index]['favorite'];
-                            });
-                          },
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                              const RoundedRectangleBorder(
-                                side: BorderSide(
-                                  color: Color(0xFF9DC2FF),
-                                ),
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(productList[index]['favorite']
-                                  ? Icons.favorite
-                                  : Icons.favorite_border_outlined),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const Text(
-                                'Like',
-                                style: TextStyle(
-                                  color: Color(0xFF2264D1),
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -452,14 +455,14 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   Padding categoryWidget(Size size, List<Map<String, dynamic>> categoryList) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: SizedBox(
-        height: 56,
-        width: size.width - size.width * 0.05,
+        height: 50,
+        width: size.width - size.width * 0.1,
         child: ListView.builder(
           itemCount: categoryList.length,
           scrollDirection: Axis.horizontal,
-          physics: const ScrollPhysics(),
+          physics: AlwaysScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
@@ -467,7 +470,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                 setState(() {});
               },
               child: Container(
-                width: 144,
+                width: 145,
                 height: 50,
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 decoration: BoxDecoration(
