@@ -13,12 +13,13 @@ class DesktopAppBar extends StatefulWidget {
 }
 
 class _DesktopAppBarState extends State<DesktopAppBar> {
+  bool searcht = true;
+  double cantida = 611;
   @override
   Widget build(BuildContext context) {
-    final remainingWidth = MediaQuery.of(context).size.width - 611;
+    final remainingWidth = MediaQuery.of(context).size.width - cantida;
     const viewsCounts = 5;
-    bool searcht = true;
-    bool searcht2 = !searcht;
+
     TextEditingController searchController = TextEditingController();
     final numberOfVisibleViews = (remainingWidth ~/ 120).clamp(0, viewsCounts);
     return Padding(
@@ -27,7 +28,7 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
         children: [
           const AppLogo(),
           const Spacer(
-            flex: 1,
+            flex: 2,
           ),
           ...[
             TextButton(
@@ -138,13 +139,14 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
             flex: 3,
           ),
           Visibility(
-            visible: searcht2,
+            visible: !searcht,
             child: Container(
               height: 44,
-              width: MediaQuery.of(context).size.width * 0.05,
+              width: MediaQuery.of(context).size.width * 0.40,
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Color(0xFFEDEDF0),
+                border: Border.all(width: 0.3),
                 borderRadius: BorderRadius.all(
                   Radius.circular(40),
                 ),
@@ -166,9 +168,9 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
                       child: IconButton(
                         icon: Icon(Icons.close, size: 17),
                         onPressed: () {
-                          setState(() {
-                            searcht = !searcht;
-                          });
+                          searcht = !searcht;
+                          cantida = 611;
+                          setState(() {});
                         },
                       ),
                     ),
@@ -180,10 +182,9 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
           Visibility(
             child: IconButton(
                 onPressed: () {
-                  print("dd");
-                  setState(() {
-                    searcht = !searcht;
-                  });
+                  cantida += MediaQuery.of(context).size.width * 0.4;
+                  searcht = !searcht;
+                  setState(() {});
                 },
                 icon: Icon(Icons.search)),
             visible: searcht,
