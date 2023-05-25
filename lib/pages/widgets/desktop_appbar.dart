@@ -3,15 +3,23 @@ import 'package:responsive_product_web_page/constant/colors.dart';
 
 import 'app_logo.dart';
 
-class DesktopAppBar extends StatelessWidget {
+class DesktopAppBar extends StatefulWidget {
   const DesktopAppBar({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<DesktopAppBar> createState() => _DesktopAppBarState();
+}
+
+class _DesktopAppBarState extends State<DesktopAppBar> {
+  @override
   Widget build(BuildContext context) {
     final remainingWidth = MediaQuery.of(context).size.width - 611;
     const viewsCounts = 5;
+    bool searcht = true;
+    bool searcht2 = !searcht;
+    TextEditingController searchController = TextEditingController();
     final numberOfVisibleViews = (remainingWidth ~/ 120).clamp(0, viewsCounts);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 9),
@@ -129,7 +137,57 @@ class DesktopAppBar extends StatelessWidget {
           const Spacer(
             flex: 3,
           ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          Visibility(
+            visible: searcht2,
+            child: Container(
+              height: 44,
+              width: MediaQuery.of(context).size.width * 0.05,
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              decoration: const BoxDecoration(
+                color: Color(0xFFEDEDF0),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(40),
+                ),
+              ),
+              child: TextField(
+                controller: searchController,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
+                  border: InputBorder.none,
+                  suffixIcon: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        print('clear field');
+                      },
+                      child: IconButton(
+                        icon: Icon(Icons.close, size: 17),
+                        onPressed: () {
+                          setState(() {
+                            searcht = !searcht;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Visibility(
+            child: IconButton(
+                onPressed: () {
+                  print("dd");
+                  setState(() {
+                    searcht = !searcht;
+                  });
+                },
+                icon: Icon(Icons.search)),
+            visible: searcht,
+          ),
           IconButton(
               onPressed: () {},
               icon: Image.asset(

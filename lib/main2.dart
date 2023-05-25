@@ -34,7 +34,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
-  int selectedIndex = -1;
+  int selectedIndex = 0;
   int selectedSideBarCategory = -1;
   String selectedSubcategory = '';
   bool isExtraFeatures = false;
@@ -471,9 +471,23 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                 height: 50,
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 decoration: BoxDecoration(
+                  border: Border.all(
+                    color: selectedIndex == index
+                        ? Colors.black
+                        : Colors.transparent,
+                  ),
+                  /* boxShadow: [
+                    BoxShadow(
+                      color: selectedIndex == index
+                          ? Colors.red.withOpacity(0.2)
+                          : Colors.transparent,
+                      blurRadius: 20,
+                      spreadRadius: 1,
+                    ),
+                  ],*/
                   color: selectedIndex == index
-                      ? const Color(0xFFEBF2FF)
-                      : Colors.white,
+                      ? Color.fromARGB(255, 235, 254, 255)
+                      : Colors.transparent,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(15),
                   ),
@@ -484,9 +498,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   children: [
                     SvgPicture.asset(
                       categoryList[index]['icon'],
-                      color: selectedIndex == index
-                          ? const Color(0xFF2979FF)
-                          : Colors.grey,
+                      color: selectedIndex == index ? Colors.red : Colors.grey,
                     ),
                     const SizedBox(
                       height: 5,
@@ -494,8 +506,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     Text(
                       categoryList[index]['title'],
                       style: const TextStyle(
-                        color: Color(0xFF2979FF),
-                        fontWeight: FontWeight.w500,
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.w600,
                         fontSize: 14,
                       ),
                     ),
