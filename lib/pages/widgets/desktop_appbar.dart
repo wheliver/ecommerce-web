@@ -19,16 +19,39 @@ class DesktopAppBar extends StatelessWidget {
         children: [
           const AppLogo(),
           const Spacer(
-            flex: 6,
+            flex: 3,
           ),
           ...[
-            TextButton(onPressed: () {}, child: const Text("DEVICES")),
-            TextButton(onPressed: () {}, child: const Text("SOFTWARE")),
             TextButton(
-                onPressed: () {}, child: const Text("GAMES & ENTERTAINMENT")),
-            TextButton(onPressed: () {}, child: const Text("GIFT CARDS")),
+                onPressed: () {},
+                child: const Text(
+                  "CLOTHING",
+                  style: TextStyle(fontSize: 24),
+                )),
             TextButton(
-                onPressed: () {}, child: const Text("EDUCATION & BUSINESS")),
+                onPressed: () {},
+                child: const Text(
+                  "ACCESSORIES",
+                  style: TextStyle(fontSize: 24),
+                )),
+            TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "CARE AND MAINTENANCE",
+                  style: TextStyle(fontSize: 24),
+                )),
+            TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "FOOTWEAR",
+                  style: TextStyle(fontSize: 24),
+                )),
+            TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "STYLE AND FASHION TIPS",
+                  style: TextStyle(fontSize: 24),
+                )),
           ].sublist(0, numberOfVisibleViews),
           Visibility(
             visible:
@@ -58,24 +81,24 @@ class DesktopAppBar extends StatelessWidget {
                   ),
                   items: const [
                     DropdownMenuItem<String>(
-                      value: "DEVICES",
-                      child: Text("DEVICES"),
+                      value: "CLOTHING",
+                      child: Text("CLOTHING"),
                     ),
                     DropdownMenuItem<String>(
-                      value: "SOFTWARE",
-                      child: Text("SOFTWARE"),
+                      value: "ACCESSORIES",
+                      child: Text("ACCESSORIES"),
                     ),
                     DropdownMenuItem<String>(
-                      value: "GAMES & ENTERTAINMENT",
-                      child: Text("GAMES & ENTERTAINMENT"),
+                      value: "CARE AND MAINTENANCE",
+                      child: Text("CARE AND MAINTENANCE"),
                     ),
                     DropdownMenuItem<String>(
-                      value: "GIFT CARDS",
-                      child: Text("GIFT CARDS"),
+                      value: "FOOTWEAR",
+                      child: Text("FOOTWEAR"),
                     ),
                     DropdownMenuItem<String>(
-                      value: "EDUCATION & BUSINESS",
-                      child: Text("EDUCATION & BUSINESS"),
+                      value: "STYLE AND FASHION TIPS",
+                      child: Text("STYLE AND FASHION TIPS"),
                     )
                   ].sublist(numberOfVisibleViews, viewsCounts),
                   onChanged: (value) {},
@@ -86,8 +109,7 @@ class DesktopAppBar extends StatelessWidget {
           const Spacer(
             flex: 5,
           ),
-          const SizedBox(height: 30, width: 200, child: SearchBar()),
-          TextButton(onPressed: () {}, child: const Text("SIGN IN")),
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           IconButton(
               onPressed: () {},
               icon: Image.asset(
@@ -95,6 +117,8 @@ class DesktopAppBar extends StatelessWidget {
                 height: 40,
                 width: 40,
               )),
+          TextButton(onPressed: () {}, child: const Text("SIGN IN")),
+          IconButton(onPressed: () {}, icon: Icon(Icons.person)),
         ],
       ),
     );

@@ -11,12 +11,12 @@ class AppDrawer extends StatelessWidget {
       color: AppColors.grey,
       width: double.infinity,
       child: Column(children: [
-        TextButton(onPressed: () {}, child: const Text("DEVICES")),
-        TextButton(onPressed: () {}, child: const Text("SOFTWARE")),
+        TextButton(onPressed: () {}, child: const Text("CLOTHING")),
+        TextButton(onPressed: () {}, child: const Text("ACCESSORIES")),
+        TextButton(onPressed: () {}, child: const Text("CARE AND MAINTENANCE")),
+        TextButton(onPressed: () {}, child: const Text("FOOTWEAR")),
         TextButton(
-            onPressed: () {}, child: const Text("GAMES & ENTERTAINMENT")),
-        TextButton(onPressed: () {}, child: const Text("GIFT CARDS")),
-        TextButton(onPressed: () {}, child: const Text("EDUCATION & BUSINESS")),
+            onPressed: () {}, child: const Text("STYLE AND FASHION TIPS")),
       ]),
     );
   }

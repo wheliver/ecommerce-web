@@ -50,7 +50,7 @@ class _ProductOptionsState extends State<ProductOptions> {
           height: 4,
         ),
         Row(
-          children: const [
+          children: [
             Text(
               "\$39.99",
               style: TextStyle(
@@ -78,7 +78,7 @@ class _ProductOptionsState extends State<ProductOptions> {
             productColors: [
               ProductColorModel("White", Colors.white),
               ProductColorModel("Black", Colors.black),
-              ProductColorModel("Green", Colors.green)
+              ProductColorModel("Green", Colors.red)
             ],
             onChange: (index) {
               setState(() {
@@ -103,6 +103,9 @@ class _ProductOptionsState extends State<ProductOptions> {
           width: double.infinity,
           height: 58,
           child: ElevatedButton.icon(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.redAccent)),
             label: const Text(
               "ADD TO CART",
               style: TextStyle(
