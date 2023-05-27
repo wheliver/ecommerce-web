@@ -39,11 +39,13 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   String selectedSubcategory = '';
   bool isExtraFeatures = false;
   bool _isDrawerOpened = false;
+  ScrollController deslis = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final screenType = context.screenType();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -78,7 +80,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 _isDrawerOpened ? _closeDrawer : _openDrawer,
                             isDrawerOpened: _isDrawerOpened),
                         child: const DesktopAppBar()),
-                    categoryWidget(size, categoryList),
+                    Center(child: categoryWidget(size, categoryList, deslis)),
                     const SizedBox(
                       height: 3,
                     ),
@@ -129,6 +131,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     RelatedKeyword(
+                                        size: size,
                                         relatedKeyword: relatedKeyword),
                                     productCard(
                                         (MediaQuery.of(context).size.width /
@@ -453,73 +456,121 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     );
   }
 
-  Padding categoryWidget(Size size, List<Map<String, dynamic>> categoryList) {
+  Padding categoryWidget(Size size, List<Map<String, dynamic>> categoryList,
+      ScrollController deslisar) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-      child: SizedBox(
-        height: 50,
-        width: size.width - size.width * 0.1,
-        child: ListView.builder(
-          itemCount: categoryList.length,
-          scrollDirection: Axis.horizontal,
-          physics: AlwaysScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                selectedIndex = index;
-                setState(() {});
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+              onPressed: () {
+                deslisar.animateTo(
+                  (deslisar.offset) -
+                      150, // posición a la que quieres desplazarte
+                  duration:
+                      Duration(milliseconds: 500), // duración de la animación
+                  curve: Curves
+                      .easeInOut, // curva de interpolación de la animación
+                );
               },
-              child: Container(
-                width: 145,
-                height: 50,
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: selectedIndex == index
-                        ? Colors.black
-                        : Colors.transparent,
-                  ),
-                  /* boxShadow: [
-                    BoxShadow(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+              )),
+          SizedBox(
+            height: 50,
+            width: size.width > 1100
+                ? size.width - size.width * 0.10
+                : size.width > 900
+                    ? size.width - size.width * 0.13
+                    : size.width > 670
+                        ? size.width - size.width * 0.17
+                        : size.width > 570
+                            ? size.width - size.width * 0.19
+                            : size.width > 450
+                                ? size.width - size.width * 0.22
+                                : size.width - size.width * 0.25,
+            child: ListView.builder(
+              controller: deslisar,
+              itemCount: categoryList.length,
+              scrollDirection: Axis.horizontal,
+              physics: AlwaysScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    selectedIndex = index;
+                    setState(() {});
+                  },
+                  child: Container(
+                    width: 130,
+                    height: 50,
+                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: selectedIndex == index
+                            ? Colors.black
+                            : Colors.transparent,
+                      ),
+                      /* boxShadow: [
+                        BoxShadow(
+                          color: selectedIndex == index
+                              ? Colors.red.withOpacity(0.2)
+                              : Colors.transparent,
+                          blurRadius: 20,
+                          spreadRadius: 1,
+                        ),
+                      ],*/
                       color: selectedIndex == index
-                          ? Colors.red.withOpacity(0.2)
+                          ? Color.fromARGB(255, 235, 254, 255)
                           : Colors.transparent,
-                      blurRadius: 20,
-                      spreadRadius: 1,
-                    ),
-                  ],*/
-                  color: selectedIndex == index
-                      ? Color.fromARGB(255, 235, 254, 255)
-                      : Colors.transparent,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(15),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      categoryList[index]['icon'],
-                      color: selectedIndex == index ? Colors.red : Colors.grey,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      categoryList[index]['title'],
-                      style: const TextStyle(
-                        color: Colors.redAccent,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(15),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          categoryList[index]['icon'],
+                          color:
+                              selectedIndex == index ? Colors.red : Colors.grey,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          categoryList[index]['title'],
+                          style: const TextStyle(
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          IconButton(
+              onPressed: () {
+                deslisar.animateTo(
+                  (deslisar.offset) +
+                      150, // posición a la que quieres desplazarte
+                  duration:
+                      Duration(milliseconds: 500), // duración de la animación
+                  curve: Curves
+                      .easeInOut, // curva de interpolación de la animación
+                );
+              },
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+              ))
+        ],
       ),
     );
   }
