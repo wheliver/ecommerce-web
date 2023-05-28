@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_product_web_page/pages/product_page.dart';
 import 'package:responsive_product_web_page/constant/colors.dart';
+import 'package:responsive_product_web_page/view/component/lade.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp1 extends StatelessWidget {
+  const MyApp1({super.key});
 
   // This widget is the root of your application.
   @override
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
               onBackground: AppColors.black,
               surface: AppColors.white,
               onSurface: AppColors.black)),
-      home: const ProductPage(),
+      home:
+          //WelcomePage(),
+          const ProductPage(),
     );
   }
 }
