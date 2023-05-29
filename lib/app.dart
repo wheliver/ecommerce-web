@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_product_web_page/pages/product_page.dart';
 import 'package:responsive_product_web_page/constant/colors.dart';
-import 'package:responsive_product_web_page/view/component/lade.dart';
+import 'package:responsive_product_web_page/view/component/welcomepage.dart';
 
 class MyApp1 extends StatelessWidget {
   const MyApp1({super.key});
@@ -35,9 +34,8 @@ class MyApp1 extends StatelessWidget {
               onBackground: AppColors.black,
               surface: AppColors.white,
               onSurface: AppColors.black)),
-      home:
-          //WelcomePage(),
-          const ProductPage(),
+      home: welcomep(),
+      //  const ProductPage(),
     );
   }
 }
