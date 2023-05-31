@@ -28,12 +28,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void chances() {
-    register = !register;
+  void chancesreg() {
+    register = false;
     setState(() {});
   }
 
-  bool register = false;
+  void chancessin() {
+    register = true;
+    setState(() {});
+  }
+
+  bool register = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,39 +68,274 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        _menuItem(title: 'Home'),
-                        _menuItem(title: 'About us'),
-                        _menuItem(title: 'Contact us'),
-                        _menuItem(title: 'Help'),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 75),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Column(
+                              children: [
+                                Text(
+                                  '${'Home'}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (false)
+                                        ? Colors.redAccent
+                                        : Colors.black87,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                (false)
+                                    ? Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 2),
+                                        decoration: BoxDecoration(
+                                          color: Colors.redAccent,
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                      )
+                                    : SizedBox()
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 75),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Column(
+                              children: [
+                                Text(
+                                  '${'About us'}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (false)
+                                        ? Colors.redAccent
+                                        : const Color.fromRGBO(0, 0, 0, 0.867),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                (false)
+                                    ? Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 2),
+                                        decoration: BoxDecoration(
+                                          color: Colors.redAccent,
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                      )
+                                    : SizedBox()
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 75),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Column(
+                              children: [
+                                Text(
+                                  '${'Contact us'}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (false)
+                                        ? Colors.redAccent
+                                        : Colors.black87,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                (false)
+                                    ? Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 2),
+                                        decoration: BoxDecoration(
+                                          color: Colors.redAccent,
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                      )
+                                    : SizedBox()
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 75),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Column(
+                              children: [
+                                Text(
+                                  '${'Help'}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: (false)
+                                        ? Colors.redAccent
+                                        : Colors.black87,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                (false)
+                                    ? Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 2),
+                                        decoration: BoxDecoration(
+                                          color: Colors.deepPurple,
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                      )
+                                    : SizedBox()
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        _menuItem(title: 'Sign In', isActive: !register),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 75),
+                          child: GestureDetector(
+                            onTap: () => chancessin(),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Container(
+                                padding: !register
+                                    ? EdgeInsets.symmetric(
+                                        horizontal: 30, vertical: 10)
+                                    : null,
+                                decoration: BoxDecoration(
+                                  color: !register
+                                      ? Colors.white
+                                      : Colors.transparent,
+                                  borderRadius: !register
+                                      ? BorderRadius.circular(15)
+                                      : null,
+                                  boxShadow: !register
+                                      ? [
+                                          BoxShadow(
+                                            color: Colors.grey[300]!,
+                                            spreadRadius: 10,
+                                            blurRadius: 12,
+                                          ),
+                                        ]
+                                      : null,
+                                ),
+                                child: register
+                                    ? Column(
+                                        children: [
+                                          Text(
+                                            '${'Sign In'}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: register
+                                                  ? Colors.red
+                                                  : Colors.black54,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 6,
+                                          ),
+                                          register
+                                              ? Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 2),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                  ),
+                                                )
+                                              : SizedBox()
+                                        ],
+                                      )
+                                    : Text(
+                                        'Sign In',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
                         GestureDetector(
                           onTap: () {
-                            chances();
+                            chancesreg();
                           },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey[300]!,
-                                  spreadRadius: 10,
-                                  blurRadius: 12,
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Container(
+                              padding: register
+                                  ? EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10)
+                                  : null,
+                              decoration: BoxDecoration(
+                                color: register
+                                    ? Colors.white
+                                    : Colors.transparent,
+                                borderRadius:
+                                    register ? BorderRadius.circular(15) : null,
+                                boxShadow: register
+                                    ? [
+                                        BoxShadow(
+                                          color: Colors.grey[300]!,
+                                          spreadRadius: 10,
+                                          blurRadius: 12,
+                                        ),
+                                      ]
+                                    : null,
                               ),
+                              child: register
+                                  ? Text(
+                                      'Register',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    )
+                                  : Column(
+                                      children: [
+                                        Text(
+                                          '${'Register'}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: !register
+                                                ? Colors.red
+                                                : Colors.black54,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 6,
+                                        ),
+                                        !register
+                                            ? Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 12,
+                                                    vertical: 2),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                ),
+                                              )
+                                            : SizedBox()
+                                      ],
+                                    ),
                             ),
                           ),
                         )
@@ -117,38 +357,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Widget _menuItem({String title = 'Title Menu', isActive = false}) {
-  return Padding(
-    padding: const EdgeInsets.only(right: 75),
-    child: MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: Column(
-        children: [
-          Text(
-            '$title',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: isActive ? Colors.deepPurple : Colors.black54,
-            ),
-          ),
-          SizedBox(
-            height: 6,
-          ),
-          isActive
-              ? Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                )
-              : SizedBox()
-        ],
-      ),
-    ),
-  );
-}
-
 class Body extends StatelessWidget {
   Body({super.key, required this.register});
 
@@ -157,59 +365,83 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      textDirection: register ? TextDirection.rtl : TextDirection.ltr,
+      textDirection: register ? TextDirection.ltr : TextDirection.rtl,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Stack(
-          alignment: Alignment.topLeft,
+          alignment: register ? Alignment.topLeft : Alignment.bottomCenter,
           children: [
             Image.asset(
-              'images/illustration-4.png',
+              register
+                  ? 'images/illustration-4.png'
+                  : 'images/illustration-3.png',
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width * 0.60,
+              width: register
+                  ? MediaQuery.of(context).size.width * 0.60
+                  : MediaQuery.of(context).size.width * 0.40,
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.20,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: register
+                    ? CrossAxisAlignment.start
+                    : CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 45),
-                    child: SizedBox(
-                      height: 60,
-                      child: Text(
-                        'Sign In\n',
-                        style: TextStyle(
-                          fontSize: 45,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "If you don't have an account",
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  register
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 1),
+                          child: SizedBox(
+                            height: register ? 55 : 30,
+                            child: Text(
+                              'Sign In\n',
+                              style: TextStyle(
+                                fontSize: register ? 45 : 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        )
+                      : SizedBox(),
+                  register
+                      ? Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            !register
+                                ? "If you have an account"
+                                : "If you don't have an account",
+                            style: TextStyle(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : SizedBox(),
                   Row(
+                    mainAxisAlignment: register
+                        ? MainAxisAlignment.start
+                        : MainAxisAlignment.center,
                     children: [
+                      !register
+                          ? Text(
+                              "If you have an account",
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          : SizedBox(),
                       Text(
-                        "You can",
+                        register ? "You can" : " you can",
                         style: TextStyle(
                             color: Colors.black54, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(width: 15),
+                      SizedBox(width: 10),
                       GestureDetector(
                         onTap: () {
                           print(MediaQuery.of(context).size.width);
                         },
                         child: Text(
-                          "Register here!",
+                          !register ? "Sign In!" : "Register here!",
                           style: TextStyle(
                               color: Colors.deepPurple,
                               fontWeight: FontWeight.bold),
@@ -233,7 +465,7 @@ class Body extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).size.height * 0.001),
           child: Container(
-            width: 320,
+            width: register ? 320 : 640,
             child: register ? _formLogin() : _formRegister(),
           ),
         )
@@ -252,47 +484,144 @@ class Body extends StatelessWidget {
             width: 200,
           ),
         ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Enter email or Phone number',
-            filled: true,
-            fillColor: Colors.blueGrey[90],
-            labelStyle: TextStyle(fontSize: 12),
-            contentPadding: EdgeInsets.only(left: 30),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey[50]!),
-              borderRadius: BorderRadius.circular(15),
+        Row(
+          children: [
+            Column(
+              children: [
+                Container(
+                  width: 300,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Enter your email',
+                      filled: true,
+                      fillColor: Colors.blueGrey[90],
+                      labelStyle: TextStyle(fontSize: 12),
+                      contentPadding: EdgeInsets.only(left: 30),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: 300,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Password',
+                      // counterText: 'Forgot password?',
+                      suffixIcon: Icon(
+                        Icons.visibility_off_outlined,
+                        color: Colors.grey,
+                      ),
+                      filled: true,
+                      fillColor: Colors.blueGrey[90],
+                      labelStyle: TextStyle(fontSize: 12),
+                      contentPadding: EdgeInsets.only(left: 30),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey[50]!),
-              borderRadius: BorderRadius.circular(15),
+            SizedBox(
+              width: 10,
             ),
-          ),
+            Column(
+              children: [
+                Container(
+                  width: 300,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Enter your Username',
+                      filled: true,
+                      fillColor: Colors.blueGrey[90],
+                      labelStyle: TextStyle(fontSize: 12),
+                      contentPadding: EdgeInsets.only(left: 30),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: 300,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Confirm Password',
+                      // counterText: 'Forgot password?',
+                      suffixIcon: Icon(
+                        Icons.visibility_off_outlined,
+                        color: Colors.grey,
+                      ),
+                      filled: true,
+                      fillColor: Colors.blueGrey[90],
+                      labelStyle: TextStyle(fontSize: 12),
+                      contentPadding: EdgeInsets.only(left: 30),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Container(
+              width: 612,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Date of Birth',
+                  filled: true,
+                  suffixIcon: Icon(
+                    Icons.calendar_today,
+                    color: Colors.grey,
+                  ),
+                  fillColor: Colors.blueGrey[90],
+                  labelStyle: TextStyle(fontSize: 12),
+                  contentPadding: EdgeInsets.only(left: 30),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blueGrey[50]!),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         SizedBox(height: 30),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Password',
-            counterText: 'Forgot password?',
-            suffixIcon: Icon(
-              Icons.visibility_off_outlined,
-              color: Colors.grey,
-            ),
-            filled: true,
-            fillColor: Colors.blueGrey[90],
-            labelStyle: TextStyle(fontSize: 12),
-            contentPadding: EdgeInsets.only(left: 30),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey[50]!),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey[50]!),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-        ),
-        SizedBox(height: 40),
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -312,7 +641,7 @@ class Body extends StatelessWidget {
                 child: Center(child: Text("Sign In"))),
             onPressed: () => print("it's pressed"),
             style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(205, 255, 46, 46),
+              primary: Color.fromARGB(255, 255, 46, 46),
               onPrimary: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -320,7 +649,7 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 40),
+        SizedBox(height: 20),
         Row(children: [
           Expanded(
             child: Divider(
@@ -339,12 +668,13 @@ class Body extends StatelessWidget {
             ),
           ),
         ]),
-        SizedBox(height: 40),
+        SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _loginWithButton(image: 'images/google.png'),
-            _loginWithButton(image: 'images/github.png', isActive: true),
+            _loginWithButton(image: 'images/github.png'),
+            _loginWithButton(image: 'images/apple.png', isActive: true),
             _loginWithButton(image: 'images/facebook.png'),
           ],
         ),
@@ -487,13 +817,14 @@ class Body extends StatelessWidget {
           child: Container(
         decoration: isActive
             ? BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(35),
+                color: Colors.transparent,
+                shape: BoxShape.circle,
+                // borderRadius: BorderRadius.circular(35),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey[400]!,
                     spreadRadius: 2,
-                    blurRadius: 15,
+                    blurRadius: 20,
                   )
                 ],
               )

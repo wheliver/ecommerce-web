@@ -35,8 +35,8 @@ class MyApp1 extends StatelessWidget {
               onBackground: AppColors.black,
               surface: AppColors.white,
               onSurface: AppColors.black)),
-      home: LoginPage(),
-      //welcomep(),
+      home: //LoginPage(),
+          welcomep(),
       //  const ProductPage(),
     );
   }
