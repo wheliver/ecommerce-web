@@ -54,10 +54,7 @@ class _welcomepState extends State<welcomep> {
                         child: const DesktopAppBar()),
                   ),
 
-                  const SizedBox(
-                    height: 3,
-                  ),
-                  WelcomePage(size: Size(size.width, (size.height * 0.9) - 3))
+                  WelcomePage(size: Size(size.width, (size.height * 0.9)))
                 ],
               ),
             ),
