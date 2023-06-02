@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_product_web_page/constant/colors.dart';
 import 'package:responsive_product_web_page/view/component/login.dart';
+import 'package:responsive_product_web_page/view/component/profilepage.dart';
 import 'package:responsive_product_web_page/view/component/welcomepage.dart';
 
 class MyApp1 extends StatelessWidget {
@@ -36,7 +37,8 @@ class MyApp1 extends StatelessWidget {
               surface: AppColors.white,
               onSurface: AppColors.black)),
       home: //LoginPage(),
-          welcomep(),
+          ProfilePage(),
+      //welcomep(),
       //  const ProductPage(),
     );
   }
